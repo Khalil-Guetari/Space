@@ -25,11 +25,11 @@ public class Game extends Application {
 	public int t = 0;
 	
 	
-	public Parent createContent() {			//Création du contenu de la scène
+	public Parent createContent() {			//CrÃ©ation du contenu de la scÃ¨ne
 		root = new Pane();
-		root.setPrefSize(1000, 1000);				//Dimension de la scène
-		player = new Player();
-		planete = new Planete(1, 50);
+		root.setPrefSize(1000, 1000);				//Dimension de la scÃ¨ne
+		player = new Player(new Image("Vaisseau.png"));
+		planete = new Planete(new Image("planete_bleue.png"));
 		planete2 = new Planete(4, 50);
 		planete3 = new Planete(1, 50);
 		planete4 = new Planete(1, 50);
@@ -39,7 +39,7 @@ public class Game extends Application {
 		planetes[2] = planete3;
 		planetes[3] = planete4;
 		
-//		exit_level = new Exit_Level();
+		exit_level = new Exit_Level(new Image("exit.png"));
 		player.setVelocity(new Point2D(0,0));
 		player.addGameObject(root, 500, 500);
 		planete.addGameObject(root, 900, 100);
@@ -61,7 +61,7 @@ public class Game extends Application {
 	
 	
 	
-	private void onUpdate() {					//Mise à jour de l'affichage
+	private void onUpdate() {					//Mise Ã  jour de l'affichage
 		if (player.isOrbiting(planetes)) {
 			player.updateVelocityOrbiting(planetes, t);
 		} else {
@@ -81,7 +81,7 @@ public class Game extends Application {
 		planete.getView().setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-				System.out.println("Click sur la planète jaune");
+				System.out.println("Click sur la planÃ¨te jaune");
 				planete.setT0(t);						//quand on clique on donne a la planete une date d'activation
 				planete.onOff();						//Si la planete etait morte, on la passe vivante et on lui attribue la masse en argument dans le cas contraire, on la tue et passons sa masse a 0 
 				
@@ -91,7 +91,7 @@ public class Game extends Application {
 		planete2.getView().setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-				System.out.println("Click sur la planète2 jaune");
+				System.out.println("Click sur la planÃ¨te2 jaune");
 				planete2.setT0(t);				
 				planete2.onOff();
 
@@ -100,7 +100,7 @@ public class Game extends Application {
 		planete3.getView().setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-				System.out.println("Click sur la planète2 jaune");
+				System.out.println("Click sur la planÃ¨te2 jaune");
 				planete3.setT0(t);				
 				planete3.onOff();
 				
@@ -109,7 +109,7 @@ public class Game extends Application {
 		planete4.getView().setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-				System.out.println("Click sur la planète2 jaune");
+				System.out.println("Click sur la planÃ¨te2 jaune");
 				planete4.setT0(t);				
 				planete4.onOff();
 				
@@ -129,7 +129,7 @@ public class Game extends Application {
 	}
 
 	@Override
-	public void start(Stage stage) {			//Gère le remplissage de la fenêtre
+	public void start(Stage stage) {			//GÃ¨re le remplissage de la fenÃªtre
 		stage.setScene(new Scene(createContent()));
 		stage.show();	
 	}
