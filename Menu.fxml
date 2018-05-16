@@ -11,7 +11,7 @@
    <children>
       <ImageView fitHeight="450.0" fitWidth="542.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
       	<image>
-      		<Image url="/img/espace.jpg" />
+      		<Image url="/src/img/espace.jpg" />
       	</image>
       </ImageView> 
       <Button layoutX="128.0" layoutY="179.0" mnemonicParsing="false" onAction="#play" prefHeight="39.0" prefWidth="113.0" text="Play">
