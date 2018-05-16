@@ -1,23 +1,21 @@
 package application;
 
-import javafx.geometry.Point2D;
-import javafx.scene.layout.Pane;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Rectangle;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
-public class Player extends GameObject { 	//Classe désignant le vaisseau
+public class Player extends GameObject { 	//Classe dÃ©signant le vaisseau
 	
 	Planete Orbiting;										//Attributs pour le design du vaisseau spatiale
 	
 	
 	
-	Player() {								//Constructeur --> un petit cercle rouge
+	Player(Image image) {								//Constructeur --> un petit cercle rouge
 		
-		super(new Circle(0, 0, 15, javafx.scene.paint.Color.RED));
+		super(new ImageView(image));
 	}
 	
 	
-	public Point2D computeVelocity(Planete planete, int t) { //calcul des vitesses cf fiche de préparation
+	public Point2D computeVelocity(Planete planete, int t) { //calcul des vitesses cf fiche de prÃ©paration
 		
 		double constante1 = 6.67*planete.getMasse()/Math.pow(this.distance(planete), 2);
 		double constante2 = Math.atan(Math.abs(this.getView().getTranslateY()-planete.getView().getTranslateY())/Math.abs(this.getView().getTranslateX()-planete.getView().getTranslateX()));
