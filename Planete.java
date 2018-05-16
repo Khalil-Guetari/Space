@@ -1,16 +1,17 @@
 package application;
 
-import javafx.scene.shape.Circle;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
-public class Planete extends GameObject {											//Classe désignant les planètes
+public class Planete extends GameObject {											//Classe dÃ©signant les planÃ¨tes
 	
 	private double masse;		//Masse pour appliquer les lois de la physique
 	private int radius;
 	private int t0; 			// Date d'activation de la planete 
 	
 	
-	Planete(double masse, int radius) {																		//Constructeur --> un gros cercle jaune
-		super(new Circle(0, 0, radius, javafx.scene.paint.Color.YELLOW));
+	Planete(double masse, int radius, Image image) {																		//Constructeur --> un gros cercle jaune
+		super(new ImageView(image));
 		this.masse = masse;			//Masse nulle --> aucun effet physique	
 		this.radius = radius;
 		System.out.println(radius);
@@ -46,7 +47,7 @@ public class Planete extends GameObject {											//Classe désignant les planè
 			this.getView().setOpacity(0.2);											// la planete meurt : on la grise
 		} else {
 			this.setAlive(true);
-			this.getView().setOpacity(1);											//la planete née : on la met bien opaque 
+			this.getView().setOpacity(1);											//la planete nÃ©e : on la met bien opaque 
 		}
 	
 	}
