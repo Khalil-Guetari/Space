@@ -1,5 +1,6 @@
 package application;
 
+
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -70,13 +71,7 @@ public class Game extends Application {
 			root.getChildren().remove(player.getView());
 			timer.stop();
 			root.getChildren().removeAll();
-			System.out.println("Level Failed");
-			root = FXMLLoader.load(getClass().getResource("/application/Level_failed.fxml"));
-			Scene scene = new Scene(root,600,600);
-			Stage primaryStage = new Stage();
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());				
-			primaryStage.setScene(scene);
-			primaryStage.show();
+			result("failed");
 		
 		}
 		
@@ -85,16 +80,18 @@ public class Game extends Application {
 			root.getChildren().remove(player.getView());
 			timer.stop();
 			root.getChildren().removeAll();
-			System.out.println("Level Sucess");
-			root = FXMLLoader.load(getClass().getResource("/application/Level_sucess.fxml"));
-			Scene scene = new Scene(root,600,600);
-			Stage primaryStage = new Stage();
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-			primaryStage.setScene(scene);
-			primaryStage.show();
+			result("sucess");
 		}
 	}
-
+	
+	public void result(String result) throws Exception {
+		root = FXMLLoader.load(getClass().getResource("/application/Level_"+ result + ".fxml"));
+		Scene scene = new Scene(root,600,600);
+		Stage primaryStage = new Stage();
+		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());				
+		primaryStage.setScene(scene);
+		primaryStage.show();
+	}
 	@Override
 	public void start(Stage stage) throws Exception {			//Gère le remplissage de la fenêtre
 		stage.setScene(new Scene(createContent()));

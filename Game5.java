@@ -74,60 +74,44 @@ public class Game5 extends Application {
 		if (player.isCollidingPlanete(planete)) {
 			player.setAlive(false);
 			root.getChildren().remove(player.getView());
-			timer.stop();
 			root.getChildren().removeAll();
-			System.out.println("Level Failed");
-			root = FXMLLoader.load(getClass().getResource("/application/Level_failed.fxml"));
-			Scene scene = new Scene(root,600,600);
-			Stage primaryStage = new Stage();
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());				
-			primaryStage.setScene(scene);
-			primaryStage.show();
+			timer.stop();
+			result("failed");
 		
 		}
 		
 		if (player.isCollidingPlanete(planete1)) {
 			player.setAlive(false);
 			root.getChildren().remove(player.getView());
-			timer.stop();
 			root.getChildren().removeAll();
-			System.out.println("Level Failed");
-			root = FXMLLoader.load(getClass().getResource("/application/Level_failed.fxml"));
-			Scene scene = new Scene(root,600,600);
-			Stage primaryStage = new Stage();
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());				
-			primaryStage.setScene(scene);
-			primaryStage.show();
+			timer.stop();
+			result("failed");
 		
 		}
 	
 		if (player.isCollidingExit(exit_level)) {
 			player.setAlive(false);
 			root.getChildren().remove(player.getView());
-			timer.stop();
 			root.getChildren().removeAll();
-			System.out.println("Level Sucess");
-			root = FXMLLoader.load(getClass().getResource("/application/Level_sucess.fxml"));
-			Scene scene = new Scene(root,600,600);
-			Stage primaryStage = new Stage();
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-			primaryStage.setScene(scene);
-			primaryStage.show();
+			timer.stop();
+			result("sucess");
 		}
 		
 		if (player.isCollidingTrou_noir(trou_noir)) {
 			player.setAlive(false);
 			root.getChildren().remove(player.getView());
-			timer.stop();
 			root.getChildren().removeAll();
-			System.out.println("Level Failed");
-			root = FXMLLoader.load(getClass().getResource("/application/Level_failed.fxml"));
-			Scene scene = new Scene(root,600,600);
-			Stage primaryStage = new Stage();
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-			primaryStage.setScene(scene);
-			primaryStage.show();
+			timer.stop();
+			result("failed");
 		}
+	}
+	public void result(String result) throws Exception {
+		root = FXMLLoader.load(getClass().getResource("/application/Level_"+ result + ".fxml"));
+		Scene scene = new Scene(root,600,600);
+		Stage primaryStage = new Stage();
+		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());				
+		primaryStage.setScene(scene);
+		primaryStage.show();
 	}
 	
 	@Override

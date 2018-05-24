@@ -18,7 +18,7 @@ public class Game2 extends Application {
 	public AnimationTimer timer;
 	private Player player;
 	private Planete planete;
-	private Planete planete2;
+	private Planete planete1;
 	private Planete[] planetes;
 	public int t = 0;
 
@@ -28,15 +28,15 @@ public class Game2 extends Application {
 		root.setStyle("-fx-background-color: black;");
 		player = new Player(new Image("/img/vaisseau.png"));
 		planete = new Planete(5, 20, new Image("/img/terre.png"));
-		planete2 = new Planete(5, 20,  new Image("/img/terre.png"));
+		planete1 = new Planete(5, 20,  new Image("/img/terre.png"));
 		planetes = new Planete[2];
 		planetes[0] = planete;
-		planetes[1] = planete2;
+		planetes[1] = planete1;
 		exit_level = new Exit_Level(new Image("/img/exit.png"));
 		player.setVelocity(new Point2D(0,0));
 		player.addGameObject(root, 275, 100);
 		planete.addGameObject(root, 450, 450);
-		planete2.addGameObject(root, 50, 450);
+		planete1.addGameObject(root, 50, 450);
 		exit_level.addGameObject(root, 280, 300);
 		
 		timer = new AnimationTimer() {
@@ -64,8 +64,8 @@ public class Game2 extends Application {
 		player.updateVelocity(planetes, t);
 		player.update();
 		
-		planete2.onClick(player, t);			
-		planete.onClick(player, t);
+		planete.onClick(player, t);			
+		planete1.onClick(player, t);
 		
 		t++; 									// on incremente le temps a chaque fin de boucle
 		
@@ -74,29 +74,16 @@ public class Game2 extends Application {
 			root.getChildren().remove(player.getView());
 			timer.stop();
 			root.getChildren().removeAll();
-			System.out.println("Level Failed");
-			root = FXMLLoader.load(getClass().getResource("/application/Level_failed.fxml"));
-			Scene scene = new Scene(root,600,600);
-			Stage primaryStage = new Stage();
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());				
-			primaryStage.setScene(scene);
-			primaryStage.show();
+			result("failed");
 		
 		}
 		
-		if (player.isCollidingPlanete(planete2)) {
+		if (player.isCollidingPlanete(planete1)) {
 			player.setAlive(false);
 			root.getChildren().remove(player.getView());
 			timer.stop();
 			root.getChildren().removeAll();
-			System.out.println("Level Failed");
-			root = FXMLLoader.load(getClass().getResource("/application/Level_failed.fxml"));
-			Scene scene = new Scene(root,600,600);
-			Stage primaryStage = new Stage();
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());				
-			primaryStage.setScene(scene);
-			primaryStage.show();
-		
+			result("failed");
 		}
 	
 		if (player.isCollidingExit(exit_level)) {
@@ -104,14 +91,16 @@ public class Game2 extends Application {
 			root.getChildren().remove(player.getView());
 			timer.stop();
 			root.getChildren().removeAll();
-			System.out.println("Level Sucess");
-			root = FXMLLoader.load(getClass().getResource("/application/Level_sucess.fxml"));
-			Scene scene = new Scene(root,600,600);
-			Stage primaryStage = new Stage();
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-			primaryStage.setScene(scene);
-			primaryStage.show();
+			result("sucess");
 		}
+	}
+	public void result(String result) throws Exception {
+		root = FXMLLoader.load(getClass().getResource("/application/Level_"+ result + ".fxml"));
+		Scene scene = new Scene(root,600,600);
+		Stage primaryStage = new Stage();
+		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());				
+		primaryStage.setScene(scene);
+		primaryStage.show();
 	}
 	
 	@Override
