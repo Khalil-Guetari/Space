@@ -9,27 +9,27 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MenuController">
    <children>
-      <ImageView fitHeight="600" fitWidth="600.0" layoutX="2.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="450.0" fitWidth="542.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
       	<image>
-      		<Image url="/img/espace.jpg" />
+      		<Image url="/src/img/espace.jpg" />
       	</image>
-      </ImageView>
-      <Button layoutX="244.0" layoutY="218.0" mnemonicParsing="false" onAction="#play" prefHeight="39.0" prefWidth="113.0" text="Jouer">
+      </ImageView> 
+      <Button layoutX="128.0" layoutY="179.0" mnemonicParsing="false" onAction="#play" prefHeight="39.0" prefWidth="113.0" text="Play">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Button layoutX="244.0" layoutY="311.0" mnemonicParsing="false" text="Paramètres">
+      <Button layoutX="128.0" layoutY="257.0" mnemonicParsing="false" text="Parameters">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Button fx:id="exit" layoutX="244.0" layoutY="402.0" mnemonicParsing="false" onAction="#quit" prefHeight="39.0" prefWidth="113.0" text="Quitter">
+      <Button fx:id="exit" layoutX="128.0" layoutY="334.0" mnemonicParsing="false" onAction="#quit" prefHeight="39.0" prefWidth="113.0" text="Exit">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Label alignment="CENTER" contentDisplay="TOP" layoutX="142.0" layoutY="96.0" prefHeight="73.0" prefWidth="318.0" text="In Space" textFill="PINK">
+      <Label contentDisplay="TOP" layoutX="48.0" layoutY="48.0" prefHeight="73.0" prefWidth="318.0" text="In the Space" textFill="PINK">
          <font>
             <Font size="50.0" />
          </font>
