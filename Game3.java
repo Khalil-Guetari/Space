@@ -19,20 +19,24 @@ public class Game3 extends Application {
 	private Planete planete;
 	private Planete[] planetes;
 	public int t = 0;
+	private Obstacle asteroid;
 
-	public Parent createContent() throws Exception {			//Création du contenu de la scène
+	public Parent createContent() throws Exception {			//CrÃ©ation du contenu de la scÃ¨ne
 		root = new Pane();
-		root.setPrefSize(600, 600);								//Dimension de la scène
+		root.setPrefSize(600, 600);								//Dimension de la scÃ¨ne
 		root.setStyle("-fx-background-color: black;");
 		player = new Player(new Image("/img/vaisseau.png"));
 		planete = new Planete(1, 10, new Image("/img/rose.png"));
 		planetes = new Planete[1];
 		planetes[0] = planete;
 		exit_level = new Exit_Level(new Image("/img/exit.png"));
+		asteroid = new Obstacle(0, new Image("/img/mars.png"), 300);
 		player.setVelocity(new Point2D(0,0));
 		player.addGameObject(root, 275, 50);
 		planete.addGameObject(root, 280, 280);
 		exit_level.addGameObject(root, 280, 420);
+		asteroid.addGameObject(root, 500, 200);
+		
 		
 		timer = new AnimationTimer() {
 			@Override
@@ -48,7 +52,7 @@ public class Game3 extends Application {
 		onUpdate();
 		return root;
 	}
-	private void onUpdate() throws Exception {					//Mise à jour de l'affichage
+	private void onUpdate() throws Exception {					//Mise Ã  jour de l'affichage
 		
 		if (player.isOrbiting(planetes)) {
 			player.updateVelocityOrbiting(planetes, t);
@@ -58,6 +62,9 @@ public class Game3 extends Application {
 		
 		player.updateVelocity(planetes, t);
 		player.update();
+		
+		asteroid.move(t);
+		asteroid.update();
 					
 		planete.onClick(player, t);
 		
@@ -78,6 +85,14 @@ public class Game3 extends Application {
 			timer.stop();
 			root.getChildren().removeAll();
 			result("sucess");
+		}
+		
+		if (player.isCollidingObstacle(asteroid)) {
+			player.setAlive(false);
+			root.getChildren().remove(player.getView());
+			timer.stop();
+			root.getChildren().removeAll();
+		
 		}
 	}
 	public void result(String result) throws Exception {
