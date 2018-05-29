@@ -16,12 +16,12 @@ public class GameObject {
 		this.view = view;
 	}
 	
-	public void update() {									   		//Gère le mouvement du GameObject
+	public void update() {									   		//GÃ¨re le mouvement du GameObject
 		view.setTranslateX(view.getTranslateX()+velocity.getX());	//Translation selon les x (si velocity.getX()=0 pas de mouvement)
 		view.setTranslateY(view.getTranslateY()+velocity.getY());   //Translation selon les y (si velocity.getY()=0 pas de mouvement)
 	}
 	
-	public void addGameObject(Pane root, double x, double y) { 		//Ajout d'un sprite "objet" aux coord x et y dans la fenêtre
+	public void addGameObject(Pane root, double x, double y) { 		//Ajout d'un sprite "objet" aux coord x et y dans la fenÃªtre
 		this.getView().setTranslateX(x);
 		this.getView().setTranslateY(y);
 		root.getChildren().add(this.getView());
@@ -52,7 +52,7 @@ public class GameObject {
 		return alive;
 	}
 	
-	public void setAlive(boolean alive) {					    	//Modifier l'état de vie de l'objet
+	public void setAlive(boolean alive) {					    	//Modifier l'Ã©tat de vie de l'objet
 		this.alive = alive;
 	}
 	
@@ -64,5 +64,13 @@ public class GameObject {
 	}
 	public boolean isCollidingExit(Exit_Level other) {       	    	
 		return getView().getBoundsInParent().intersects(other.getView().getBoundsInParent());
+	}
+	
+		public boolean isCollidingObstacle(Obstacle other) {
+		return this.distance(other)<other.getRadius()+65;
+	}
+
+	private double distance(Obstacle other) {
+		return Math.sqrt(Math.pow(view.getTranslateX() - other.getView().getTranslateX(), 2) + Math.pow(view.getTranslateY() - other.getView().getTranslateY(), 2));
 	}
 }
