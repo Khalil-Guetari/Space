@@ -18,6 +18,7 @@ public class Game3 extends Application {
 	private Player player;
 	private Planete planete;
 	private Planete[] planetes;
+	private Arrow visuArrow;
 	public int t = 0;
 
 	public Parent createContent() throws Exception {			//Création du contenu de la scène
@@ -33,6 +34,7 @@ public class Game3 extends Application {
 		player.addGameObject(root, 275, 50);
 		planete.addGameObject(root, 280, 280);
 		exit_level.addGameObject(root, 280, 420);
+		
 		
 		timer = new AnimationTimer() {
 			@Override
@@ -56,7 +58,14 @@ public class Game3 extends Application {
 			player.updateVelocity(planetes, t);	
 		}
 		
-		player.updateVelocity(planetes, t);
+		if (t == 0) {
+			visuArrow = player.visuArrow(root,600,600);
+		} else {
+			root.getChildren().remove(visuArrow);
+			visuArrow = player.visuArrow(root,600,600);
+		}
+		
+		root.getChildren().add(visuArrow);
 		player.update();
 					
 		planete.onClick(player, t);

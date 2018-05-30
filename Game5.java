@@ -20,6 +20,7 @@ public class Game5 extends Application {
 	private Planete planete1; 
 	private Planete[] planetes;
 	private Trou_noir trou_noir;
+	private Arrow visuArrow;
 	public int t = 0;
 
 	public Parent createContent() throws Exception {			//Création du contenu de la scène
@@ -63,7 +64,15 @@ public class Game5 extends Application {
 			player.updateVelocity(planetes, t);	
 		}
 		
-		player.updateVelocity(planetes, t);
+		if (t == 0) {
+			visuArrow = player.visuArrow(root,600,600);
+		} else {
+			root.getChildren().remove(visuArrow);
+			visuArrow = player.visuArrow(root,600,600);
+		}
+		
+		root.getChildren().add(visuArrow);
+		
 		player.update();
 					
 		planete.onClick(player, t);

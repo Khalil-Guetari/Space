@@ -7,16 +7,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 
 
-
-
-
 public class Menu extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			Parent root = FXMLLoader.load(getClass().getResource("/src/application/Menu.fxml"));
+			Parent root = FXMLLoader.load(getClass().getResource("/application/Menu.fxml"));
 			Scene scene = new Scene(root,600,600);
-			scene.getStylesheets().add(getClass().getResource("/src/application/application.css").toExternalForm());
+			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch(Exception e) {
@@ -27,6 +24,5 @@ public class Menu extends Application {
 	
 	public static void main(String[] args) {
 		launch(args);
-		
 	}	
 }

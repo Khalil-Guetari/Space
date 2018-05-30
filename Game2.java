@@ -20,6 +20,7 @@ public class Game2 extends Application {
 	private Planete planete;
 	private Planete planete1;
 	private Planete[] planetes;
+	private Arrow visuArrow;
 	public int t = 0;
 
 	public Parent createContent() throws Exception {			//Création du contenu de la scène
@@ -28,7 +29,7 @@ public class Game2 extends Application {
 		root.setStyle("-fx-background-color: black;");
 		player = new Player(new Image("/img/vaisseau.png"));
 		planete = new Planete(5, 20, new Image("/img/terre.png"));
-		planete1 = new Planete(5, 20,  new Image("/img/terre.png"));
+		planete1 = new Planete(3, 15,  new Image("/img/verte.png"));
 		planetes = new Planete[2];
 		planetes[0] = planete;
 		planetes[1] = planete1;
@@ -60,8 +61,15 @@ public class Game2 extends Application {
 		} else {
 			player.updateVelocity(planetes, t);	
 		}
+
+		if (t == 0) {
+			visuArrow = player.visuArrow(root,600,600);
+		} else {
+			root.getChildren().remove(visuArrow);
+			visuArrow = player.visuArrow(root,600,600);
+		}
 		
-		player.updateVelocity(planetes, t);
+		root.getChildren().add(visuArrow);
 		player.update();
 		
 		planete.onClick(player, t);			
